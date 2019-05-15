@@ -1,0 +1,541 @@
+{
+	"id": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+	"name": "ATPOS Transaction",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"id": "f5cbf983-7b16-4a18-6b80-ec3ec827795c",
+			"name": "Transaction",
+			"description": "",
+			"order": [
+				"17c3fb81-66d5-efba-237f-7e794a0a9f66",
+				"3f86a3e1-ed66-5194-0961-bc520cc793c4",
+				"3c5868f6-0dd5-b207-17b2-bd5fa77b8406",
+				"3fd6e914-cabd-44b7-4d2b-32a7f8a04419",
+				"4ce8a3be-e2d7-4337-48f3-f723f34f85a0",
+				"6bc22e54-aeba-5577-fe37-29e46cd21e9b",
+				"e4aaff1b-fa81-0024-d1a7-0eda3f812b39"
+			],
+			"folders_order": [],
+			"owner": "4177788",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de"
+		},
+		{
+			"id": "1f27ce9f-0ede-f9fe-0f87-e563afc97ad0",
+			"name": "Transaction-Product",
+			"description": "",
+			"order": [
+				"266ac55d-2a8a-0533-2a70-d3c7b7b5c7c4",
+				"c69c09e2-0e18-11e1-c677-f0f677379b61",
+				"5937b4ea-859d-136d-9407-570848a0067c",
+				"d8eb3a39-defb-d6c0-b08f-555e7e0122fa",
+				"885b4732-800c-655e-75ef-6038b7fa5587",
+				"8c3cf479-6b07-29ad-fa4f-970ec3690fc2",
+				"cd0a7676-90be-b69c-40a0-d37f9001fcf1",
+				"73ed4ca1-a68a-80c6-c543-2f632aca874e",
+				"3ce09961-e82c-a1a9-0a76-d2fd5e6204a5"
+			],
+			"folders_order": [],
+			"owner": "4177788",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de"
+		}
+	],
+	"folders_order": [
+		"f5cbf983-7b16-4a18-6b80-ec3ec827795c",
+		"1f27ce9f-0ede-f9fe-0f87-e563afc97ad0"
+	],
+	"timestamp": 0,
+	"owner": "4177788",
+	"public": false,
+	"requests": [
+		{
+			"id": "17c3fb81-66d5-efba-237f-7e794a0a9f66",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/create/",
+			"folder": "f5cbf983-7b16-4a18-6b80-ec3ec827795c",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553218384221,
+			"name": "CreateTransaction id=1",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"rawModeData": "{\n  \"transactionId\":\"1\",\n  \"value\": \"9\"\n}"
+		},
+		{
+			"id": "266ac55d-2a8a-0533-2a70-d3c7b7b5c7c4",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/create",
+			"folder": "1f27ce9f-0ede-f9fe-0f87-e563afc97ad0",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553234933945,
+			"name": "CreateTransaction id=1",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"rawModeData": "{\n  \"transactionId\":\"1\",\n  \"value\": \"9\"\n}"
+		},
+		{
+			"id": "3c5868f6-0dd5-b207-17b2-bd5fa77b8406",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/update",
+			"folder": "f5cbf983-7b16-4a18-6b80-ec3ec827795c",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});\n\nlet jsonData = pm.response.json();\n\nconsole.log(jsonData);\n\npm.test(\"Get Product\", function(){\n    pm.expect(jsonData.productId).to.eql(1);\n    pm.expect(jsonData.price).to.eql(9.50);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553218392876,
+			"name": "UpdateTransaction id=1",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"rawModeData": "{\n  \"transactionId\":\"1\",\n  \"value\": \"9.50\"\n}"
+		},
+		{
+			"id": "3ce09961-e82c-a1a9-0a76-d2fd5e6204a5",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/getbyid/1",
+			"folder": "1f27ce9f-0ede-f9fe-0f87-e563afc97ad0",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553218400717,
+			"name": "GetTransaction id=1 Delete",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"isFromCollection": true,
+			"collectionRequestId": "e4aaff1b-fa81-0024-d1a7-0eda3f812b39",
+			"rawModeData": "{\n  \"productId\":\"1\",\n  \"price\": \"9.50\"\n}"
+		},
+		{
+			"id": "3f86a3e1-ed66-5194-0961-bc520cc793c4",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/getbyid/1",
+			"folder": "f5cbf983-7b16-4a18-6b80-ec3ec827795c",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "let jsonData = pm.response.json();\n\nconsole.log(jsonData);\n\npm.test(\"Get Product\", function(){\n    pm.expect(jsonData.productId).to.eql(1);\n    pm.expect(jsonData.price).to.eql(9.00);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553218390441,
+			"name": "GetTransaction id=1",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "3fd6e914-cabd-44b7-4d2b-32a7f8a04419",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/getbyid/1",
+			"folder": "f5cbf983-7b16-4a18-6b80-ec3ec827795c",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "let jsonData = pm.response.json();\n\nconsole.log(jsonData);\n\npm.test(\"Get Product\", function(){\n    pm.expect(jsonData.productId).to.eql(1);\n    pm.expect(jsonData.price).to.eql(9.50);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553218427001,
+			"name": "GetTransaction id=1 Change",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "4ce8a3be-e2d7-4337-48f3-f723f34f85a0",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/create",
+			"folder": "f5cbf983-7b16-4a18-6b80-ec3ec827795c",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553218395751,
+			"name": "CreateTransaction id=1 Duplicate",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"rawModeData": "{\n  \"transactionId\":\"1\",\n  \"value\": \"9\"\n}"
+		},
+		{
+			"id": "5937b4ea-859d-136d-9407-570848a0067c",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/create/1/products",
+			"folder": "1f27ce9f-0ede-f9fe-0f87-e563afc97ad0",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553234939070,
+			"name": "CreateProductTransaction id=3",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"rawModeData": "{\n  \"productId\":\"3\",\n  \"price\": \"30\"\n}"
+		},
+		{
+			"id": "6bc22e54-aeba-5577-fe37-29e46cd21e9b",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/delete/1",
+			"folder": "f5cbf983-7b16-4a18-6b80-ec3ec827795c",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553218398188,
+			"name": "DeleteTransaction id=1",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "73ed4ca1-a68a-80c6-c543-2f632aca874e",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/delete/1",
+			"folder": "1f27ce9f-0ede-f9fe-0f87-e563afc97ad0",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553235269268,
+			"name": "DeleteTransaction id=1",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "885b4732-800c-655e-75ef-6038b7fa5587",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/update",
+			"folder": "1f27ce9f-0ede-f9fe-0f87-e563afc97ad0",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});\n\nlet jsonData = pm.response.json();\n\nconsole.log(jsonData);\n\npm.test(\"Get Product\", function(){\n    pm.expect(jsonData.productId).to.eql(1);\n    pm.expect(jsonData.price).to.eql(9.50);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553218392876,
+			"name": "UpdateTransaction id=1",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"isFromCollection": true,
+			"collectionRequestId": "3c5868f6-0dd5-b207-17b2-bd5fa77b8406",
+			"rawModeData": "{\n  \"transactionId\":\"1\",\n  \"value\": \"9.50\"\n}"
+		},
+		{
+			"id": "8c3cf479-6b07-29ad-fa4f-970ec3690fc2",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/getbyid/1",
+			"folder": "1f27ce9f-0ede-f9fe-0f87-e563afc97ad0",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "let jsonData = pm.response.json();\n\nconsole.log(jsonData);\n\npm.test(\"Get Product\", function(){\n    pm.expect(jsonData.productId).to.eql(1);\n    pm.expect(jsonData.price).to.eql(9.50);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553218427001,
+			"name": "GetTransaction id=3 Change",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"isFromCollection": true,
+			"collectionRequestId": "3fd6e914-cabd-44b7-4d2b-32a7f8a04419",
+			"rawModeData": ""
+		},
+		{
+			"id": "c69c09e2-0e18-11e1-c677-f0f677379b61",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/products/create/",
+			"folder": "1f27ce9f-0ede-f9fe-0f87-e563afc97ad0",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553234936472,
+			"name": "CreateProduct id=3",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"rawModeData": "{\n  \"productId\":\"3\",\n  \"price\": \"30\"\n}"
+		},
+		{
+			"id": "cd0a7676-90be-b69c-40a0-d37f9001fcf1",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/delete/1",
+			"folder": "1f27ce9f-0ede-f9fe-0f87-e563afc97ad0",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553218398188,
+			"name": "DeleteProduct id=3",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"isFromCollection": true,
+			"collectionRequestId": "32bed090-6657-5849-f9e0-08a725e30a19",
+			"rawModeData": ""
+		},
+		{
+			"id": "d8eb3a39-defb-d6c0-b08f-555e7e0122fa",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/getbyid/1/products",
+			"folder": "1f27ce9f-0ede-f9fe-0f87-e563afc97ad0",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "let jsonData = pm.response.json();\n\nconsole.log(jsonData);\n\npm.test(\"Get Product\", function(){\n    pm.expect(jsonData.productId).to.eql(1);\n    pm.expect(jsonData.price).to.eql(9.00);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553234957513,
+			"name": "GetTransactionProduct id=3",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "e4aaff1b-fa81-0024-d1a7-0eda3f812b39",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/transactions/getbyid/1",
+			"folder": "f5cbf983-7b16-4a18-6b80-ec3ec827795c",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553218400717,
+			"name": "GetTransaction id=1 Delete",
+			"description": "",
+			"collectionId": "2cca3b97-ff09-c26a-c49a-55d2105bb5de",
+			"responses": [],
+			"rawModeData": "{\n  \"productId\":\"1\",\n  \"price\": \"9.50\"\n}"
+		}
+	]
+}

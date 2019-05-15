@@ -1,0 +1,2810 @@
+{
+	"info": {
+		"_postman_id": "db802aeb-69b8-4dd6-99bf-268a660db856",
+		"name": "AtposAuth0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "resource server - PATCH API with Scopes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "30b30133-6049-4760-9479-c6cd61a386f6",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"scopes\":[{\"value\": \"read:products\"}, {\"value\": \"read:product\"}, {\"value\": \"write:product\"}, {\"value\": \"delete:product\"}]}"
+						},
+						"url": {
+							"raw": "https://{{AUTH0_DOMAIN}}/api/v2/resource-servers/{{RESOURCE_SERVER_ID}}",
+							"protocol": "https",
+							"host": [
+								"{{AUTH0_DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"resource-servers",
+								"{{RESOURCE_SERVER_ID}}"
+							]
+						},
+						"description": "Update Auth0 Resource Server (identified with resource_server_id) with list of scopes you wish to associate with this API (resource server)"
+					},
+					"response": []
+				},
+				{
+					"name": "resource server - GET API scopes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "00c197e0-2ada-4bfb-ae3d-96f711647b8e",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var data = JSON.parse(responseBody);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{AUTH0_DOMAIN}}/api/v2/resource-servers/{{RESOURCE_SERVER_ID}}",
+							"protocol": "https",
+							"host": [
+								"{{AUTH0_DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"resource-servers",
+								"{{RESOURCE_SERVER_ID}}"
+							]
+						},
+						"description": "Gets list of API scopes for this resource server (identified by resource_server_id)"
+					},
+					"response": []
+				},
+				{
+					"name": "resource server - GET Client Grants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a78a1247-da9f-4022-98dd-7c1bf5aa6381",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"",
+									"tests[\"Body contains client_id: GotMXPz4CeY27C2EcBpDHO6QilqxNSUL\"] = responseBody.has(\"GotMXPz4CeY27C2EcBpDHO6QilqxNSUL\");",
+									"",
+									"var item = _.filter(data, function(o) {",
+									"    return o.client_id === 'GotMXPz4CeY27C2EcBpDHO6QilqxNSUL';",
+									"})[0];",
+									"",
+									"tests[\"expected id: cgr_QOxuS02OlQcYiMVO\"] = item.id === 'cgr_JBALxdKXpDanH8K4'",
+									"",
+									"postman.setEnvironmentVariable(\"client_grant_id\", item.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{AUTH0_DOMAIN}}/api/v2/client-grants",
+							"protocol": "https",
+							"host": [
+								"{{AUTH0_DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"client-grants"
+							]
+						},
+						"description": "Gets list of existing Client Grants. Represents the scope information associated with each Client across ALL resource servers defined for the given Auth0 Tenant"
+					},
+					"response": []
+				},
+				{
+					"name": "resource server - POST - obtain API Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca789b9d-b7a6-47f4-a75d-d4cbce159e92",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"access_token\", data.access_token);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"client_id\":\"GotMXPz4CeY27C2EcBpDHO6QilqxNSUL\",\"client_secret\":\"rIBUy0D40MAJA7UxgkhaOU-RsU7pq8qGRPNK_oi7_KxeWa4xNew8HMUkEcmGVf0a\",\"audience\":\"https://atpos/api\",\"grant_type\":\"client_credentials\"}"
+						},
+						"url": {
+							"raw": "https://dfriveros11.auth0.com/oauth/token",
+							"protocol": "https",
+							"host": [
+								"dfriveros11",
+								"auth0",
+								"com"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						},
+						"description": "Get a token for the resource server (identified by audience in POST body request)"
+					},
+					"response": []
+				},
+				{
+					"name": "resource server - PATCH Client Grants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "89656503-6c5d-4727-a35a-dea6cb3eb271",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"scope\": [\"read:products\", \"read:product\", \"write:product\", \"delete:product\"]}\n\n"
+						},
+						"url": {
+							"raw": "https://{{AUTH0_DOMAIN}}/api/v2/client-grants/{{client_grant_id}}",
+							"protocol": "https",
+							"host": [
+								"{{AUTH0_DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"client-grants",
+								"{{client_grant_id}}"
+							]
+						},
+						"description": "Update particular Client (associated with given resource server) with specific set of Client Grants - some subset of the scope information defined for the given resource server"
+					},
+					"response": []
+				},
+				{
+					"name": "GET HOME http://localhost:8080/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "96797a66-c4c5-401e-9838-8aef2947a396",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/home",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"home"
+							]
+						},
+						"description": "Simple ping to check Resource Server is responding - no authorization credentials (JWT access token) required."
+					},
+					"response": []
+				},
+				{
+					"name": "POST Product http://localhost:8080/atpos/products/create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "80bb6963-1f99-474a-8b33-a7d5fef896a0",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"transactionId\":\"1\",\n  \"value\": \"9\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/transactions/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactions",
+								"create"
+							]
+						},
+						"description": "Create a new Profile - must have write:profile scope"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Products http://localhost:8080/atpos/products/allproducts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3772815b-d4c9-4207-88a0-81dbf5082188",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/transactions/alltransactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactions",
+								"alltransactions"
+							]
+						},
+						"description": "Get all Profiles - must have read:profiles scope"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Product http://localhost:8080/atpos/products/update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2db28111-92a5-4319-b854-1e6f162386d1",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"transactionId\":\"1\",\n  \"value\": \"9.99\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/transactions/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactions",
+								"update"
+							]
+						},
+						"description": "Update existing Profile - must have write:profile scope"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Product http://localhost:8080/atpos/products/getbyid/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a43d20da-7e7d-4a6f-9126-4f235274bba8",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/transactions/getbyid/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactions",
+								"getbyid",
+								"1"
+							]
+						},
+						"description": "Get specific profile by id - must have read:profile or read:profiles scope info"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Product http://localhost:8080/products/delete/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b6866134-5eb1-4322-bb2f-071249367455",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/transactions/delete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactions",
+								"delete",
+								"1"
+							]
+						},
+						"description": "Delete an existing Profile - must have delete:profile scope"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Products http://localhost:8080/atpos/products/allproducts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3772815b-d4c9-4207-88a0-81dbf5082188",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/transactions/alltransactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactions",
+								"alltransactions"
+							]
+						},
+						"description": "Get all Profiles - must have read:profiles scope"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Original",
+					"item": [
+						{
+							"name": "resource server - PATCH API with Scopes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "30b30133-6049-4760-9479-c6cd61a386f6",
+										"exec": [
+											"tests[\"Status code is 200\"] = responseCode.code === 200;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"scopes\":[{\"value\": \"read:products\"}, {\"value\": \"read:product\"}, {\"value\": \"write:product\"}, {\"value\": \"delete:product\"}]}"
+								},
+								"url": {
+									"raw": "https://{{AUTH0_DOMAIN}}/api/v2/resource-servers/{{RESOURCE_SERVER_ID}}",
+									"protocol": "https",
+									"host": [
+										"{{AUTH0_DOMAIN}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"resource-servers",
+										"{{RESOURCE_SERVER_ID}}"
+									]
+								},
+								"description": "Update Auth0 Resource Server (identified with resource_server_id) with list of scopes you wish to associate with this API (resource server)"
+							},
+							"response": []
+						},
+						{
+							"name": "resource server - GET API scopes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "00c197e0-2ada-4bfb-ae3d-96f711647b8e",
+										"exec": [
+											"tests[\"Status code is 200\"] = responseCode.code === 200;",
+											"var data = JSON.parse(responseBody);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{AUTH0_DOMAIN}}/api/v2/resource-servers/{{RESOURCE_SERVER_ID}}",
+									"protocol": "https",
+									"host": [
+										"{{AUTH0_DOMAIN}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"resource-servers",
+										"{{RESOURCE_SERVER_ID}}"
+									]
+								},
+								"description": "Gets list of API scopes for this resource server (identified by resource_server_id)"
+							},
+							"response": []
+						},
+						{
+							"name": "resource server - GET Client Grants",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a78a1247-da9f-4022-98dd-7c1bf5aa6381",
+										"exec": [
+											"tests[\"Status code is 200\"] = responseCode.code === 200;",
+											"",
+											"var data = JSON.parse(responseBody);",
+											"",
+											"tests[\"Body contains client_id: GotMXPz4CeY27C2EcBpDHO6QilqxNSUL\"] = responseBody.has(\"GotMXPz4CeY27C2EcBpDHO6QilqxNSUL\");",
+											"",
+											"var item = _.filter(data, function(o) {",
+											"    return o.client_id === 'GotMXPz4CeY27C2EcBpDHO6QilqxNSUL';",
+											"})[0];",
+											"",
+											"tests[\"expected id: cgr_QOxuS02OlQcYiMVO\"] = item.id === 'cgr_JBALxdKXpDanH8K4'",
+											"",
+											"postman.setEnvironmentVariable(\"client_grant_id\", item.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{AUTH0_DOMAIN}}/api/v2/client-grants",
+									"protocol": "https",
+									"host": [
+										"{{AUTH0_DOMAIN}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"client-grants"
+									]
+								},
+								"description": "Gets list of existing Client Grants. Represents the scope information associated with each Client across ALL resource servers defined for the given Auth0 Tenant"
+							},
+							"response": []
+						},
+						{
+							"name": "resource server - POST - obtain API Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ca789b9d-b7a6-47f4-a75d-d4cbce159e92",
+										"exec": [
+											"tests[\"Status code is 200\"] = responseCode.code === 200;",
+											"var data = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable(\"access_token\", data.access_token);",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"client_id\":\"GotMXPz4CeY27C2EcBpDHO6QilqxNSUL\",\"client_secret\":\"rIBUy0D40MAJA7UxgkhaOU-RsU7pq8qGRPNK_oi7_KxeWa4xNew8HMUkEcmGVf0a\",\"audience\":\"https://atpos/api\",\"grant_type\":\"client_credentials\"}"
+								},
+								"url": {
+									"raw": "https://dfriveros11.auth0.com/oauth/token",
+									"protocol": "https",
+									"host": [
+										"dfriveros11",
+										"auth0",
+										"com"
+									],
+									"path": [
+										"oauth",
+										"token"
+									]
+								},
+								"description": "Get a token for the resource server (identified by audience in POST body request)"
+							},
+							"response": []
+						},
+						{
+							"name": "resource server - PATCH Client Grants",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "89656503-6c5d-4727-a35a-dea6cb3eb271",
+										"exec": [
+											"tests[\"Status code is 200\"] = responseCode.code === 200;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"scope\": [\"read:products\", \"read:product\", \"write:product\", \"delete:product\"]}\n\n"
+								},
+								"url": {
+									"raw": "https://{{AUTH0_DOMAIN}}/api/v2/client-grants/{{client_grant_id}}",
+									"protocol": "https",
+									"host": [
+										"{{AUTH0_DOMAIN}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"client-grants",
+										"{{client_grant_id}}"
+									]
+								},
+								"description": "Update particular Client (associated with given resource server) with specific set of Client Grants - some subset of the scope information defined for the given resource server"
+							},
+							"response": []
+						},
+						{
+							"name": "GET HOME http://localhost:8080/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "96797a66-c4c5-401e-9838-8aef2947a396",
+										"exec": [
+											"tests[\"Status code is 200\"] = responseCode.code === 200;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/home",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"home"
+									]
+								},
+								"description": "Simple ping to check Resource Server is responding - no authorization credentials (JWT access token) required."
+							},
+							"response": []
+						},
+						{
+							"name": "POST Product http://localhost:8080/atpos/products/create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "80bb6963-1f99-474a-8b33-a7d5fef896a0",
+										"exec": [
+											"tests[\"Status code is 200\"] = responseCode.code === 200;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"productId\":\"3\",\n  \"price\": \"9\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/products/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"create"
+									]
+								},
+								"description": "Create a new Profile - must have write:profile scope"
+							},
+							"response": []
+						},
+						{
+							"name": "GET Products http://localhost:8080/atpos/products/allproducts",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3772815b-d4c9-4207-88a0-81dbf5082188",
+										"exec": [
+											"tests[\"Status code is 200\"] = responseCode.code === 200;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/products/allproducts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"allproducts"
+									]
+								},
+								"description": "Get all Profiles - must have read:profiles scope"
+							},
+							"response": []
+						},
+						{
+							"name": "PUT Product http://localhost:8080/atpos/products/update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2db28111-92a5-4319-b854-1e6f162386d1",
+										"exec": [
+											"tests[\"Status code is 200\"] = responseCode.code === 200;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"productId\":\"3\",\n  \"price\": \"9.99\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/products/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"update"
+									]
+								},
+								"description": "Update existing Profile - must have write:profile scope"
+							},
+							"response": []
+						},
+						{
+							"name": "GET Product http://localhost:8080/atpos/products/getbyid/1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a43d20da-7e7d-4a6f-9126-4f235274bba8",
+										"exec": [
+											"tests[\"Status code is 200\"] = responseCode.code === 200;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/products/getbyid/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"getbyid",
+										"3"
+									]
+								},
+								"description": "Get specific profile by id - must have read:profile or read:profiles scope info"
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE Product http://localhost:8080/products/delete/1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b6866134-5eb1-4322-bb2f-071249367455",
+										"exec": [
+											"tests[\"Status code is 200\"] = responseCode.code === 200;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/products/delete/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"delete",
+										"3"
+									]
+								},
+								"description": "Delete an existing Profile - must have delete:profile scope"
+							},
+							"response": []
+						},
+						{
+							"name": "GET Products http://localhost:8080/atpos/products/allproducts",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3772815b-d4c9-4207-88a0-81dbf5082188",
+										"exec": [
+											"tests[\"Status code is 200\"] = responseCode.code === 200;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/products/allproducts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"allproducts"
+									]
+								},
+								"description": "Get all Profiles - must have read:profiles scope"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "UserRoles",
+					"item": [
+						{
+							"name": "read:products",
+							"item": [
+								{
+									"name": "resource server - PATCH API with Scopes",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "30b30133-6049-4760-9479-c6cd61a386f6",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"scopes\":[{\"value\": \"read:products\"}, {\"value\": \"read:product\"}, {\"value\": \"write:product\"}, {\"value\": \"delete:product\"}]}"
+										},
+										"url": {
+											"raw": "https://{{AUTH0_DOMAIN}}/api/v2/resource-servers/{{RESOURCE_SERVER_ID}}",
+											"protocol": "https",
+											"host": [
+												"{{AUTH0_DOMAIN}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"resource-servers",
+												"{{RESOURCE_SERVER_ID}}"
+											]
+										},
+										"description": "Update Auth0 Resource Server (identified with resource_server_id) with list of scopes you wish to associate with this API (resource server)"
+									},
+									"response": []
+								},
+								{
+									"name": "resource server - GET API scopes",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "00c197e0-2ada-4bfb-ae3d-96f711647b8e",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;",
+													"var data = JSON.parse(responseBody);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://{{AUTH0_DOMAIN}}/api/v2/resource-servers/{{RESOURCE_SERVER_ID}}",
+											"protocol": "https",
+											"host": [
+												"{{AUTH0_DOMAIN}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"resource-servers",
+												"{{RESOURCE_SERVER_ID}}"
+											]
+										},
+										"description": "Gets list of API scopes for this resource server (identified by resource_server_id)"
+									},
+									"response": []
+								},
+								{
+									"name": "resource server - GET Client Grants",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a78a1247-da9f-4022-98dd-7c1bf5aa6381",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;",
+													"",
+													"var data = JSON.parse(responseBody);",
+													"",
+													"tests[\"Body contains client_id: til68aqWD7KUX4f3idmJZ4uLweGWho5L\"] = responseBody.has(\"til68aqWD7KUX4f3idmJZ4uLweGWho5L\");",
+													"",
+													"var item = _.filter(data, function(o) {",
+													"    return o.client_id === 'til68aqWD7KUX4f3idmJZ4uLweGWho5L';",
+													"})[0];",
+													"",
+													"tests[\"expected id: cgr_4dfXSqHjN9y8J20T\"] = item.id === 'cgr_4dfXSqHjN9y8J20T'",
+													"",
+													"postman.setEnvironmentVariable(\"client_grant_id\", item.id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://{{AUTH0_DOMAIN}}/api/v2/client-grants",
+											"protocol": "https",
+											"host": [
+												"{{AUTH0_DOMAIN}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"client-grants"
+											]
+										},
+										"description": "Gets list of existing Client Grants. Represents the scope information associated with each Client across ALL resource servers defined for the given Auth0 Tenant"
+									},
+									"response": []
+								},
+								{
+									"name": "resource server - POST - obtain API Token",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ca789b9d-b7a6-47f4-a75d-d4cbce159e92",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;",
+													"var data = JSON.parse(responseBody);",
+													"postman.setEnvironmentVariable(\"access_token\", data.access_token);",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"client_id\":\"til68aqWD7KUX4f3idmJZ4uLweGWho5L\",\"client_secret\":\"OGitnNu9vELVAHwlbzsokH-XbVz6U7J-zBu35LsH-nbyTW-YfW9uH2QDJbrcVRKP\",\"audience\":\"https://atpos/api\",\"grant_type\":\"client_credentials\"}"
+										},
+										"url": {
+											"raw": "https://dfriveros11.auth0.com/oauth/token",
+											"protocol": "https",
+											"host": [
+												"dfriveros11",
+												"auth0",
+												"com"
+											],
+											"path": [
+												"oauth",
+												"token"
+											]
+										},
+										"description": "Get a token for the resource server (identified by audience in POST body request)"
+									},
+									"response": []
+								},
+								{
+									"name": "resource server - PATCH Client Grants",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "89656503-6c5d-4727-a35a-dea6cb3eb271",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"scope\": [\"read:products\"]}\n\n"
+										},
+										"url": {
+											"raw": "https://{{AUTH0_DOMAIN}}/api/v2/client-grants/{{client_grant_id}}",
+											"protocol": "https",
+											"host": [
+												"{{AUTH0_DOMAIN}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"client-grants",
+												"{{client_grant_id}}"
+											]
+										},
+										"description": "Update particular Client (associated with given resource server) with specific set of Client Grants - some subset of the scope information defined for the given resource server"
+									},
+									"response": []
+								},
+								{
+									"name": "GET HOME http://localhost:8080/",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "96797a66-c4c5-401e-9838-8aef2947a396",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/home",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"home"
+											]
+										},
+										"description": "Simple ping to check Resource Server is responding - no authorization credentials (JWT access token) required."
+									},
+									"response": []
+								},
+								{
+									"name": "POST Product http://localhost:8080/atpos/products/create",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "80bb6963-1f99-474a-8b33-a7d5fef896a0",
+												"exec": [
+													"tests[\"Status code is 403\"] = responseCode.code === 403;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"productId\":\"3\",\n  \"price\": \"9\"\n}"
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/create",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"create"
+											]
+										},
+										"description": "Create a new Profile - must have write:profile scope"
+									},
+									"response": []
+								},
+								{
+									"name": "GET Products http://localhost:8080/atpos/products/allproducts",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "3772815b-d4c9-4207-88a0-81dbf5082188",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/allproducts",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"allproducts"
+											]
+										},
+										"description": "Get all Profiles - must have read:profiles scope"
+									},
+									"response": []
+								},
+								{
+									"name": "PUT Product http://localhost:8080/atpos/products/update",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "da544309-675f-4cb5-abf6-7583188befc5",
+												"exec": [
+													"tests[\"Status code is 403\"] = responseCode.code === 403;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"productId\":\"3\",\n  \"price\": \"9.99\"\n}"
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/update",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"update"
+											]
+										},
+										"description": "Update existing Profile - must have write:profile scope"
+									},
+									"response": []
+								},
+								{
+									"name": "GET Product http://localhost:8080/atpos/products/getbyid/1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a43d20da-7e7d-4a6f-9126-4f235274bba8",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/getbyid/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"getbyid",
+												"1"
+											]
+										},
+										"description": "Get specific profile by id - must have read:profile or read:profiles scope info"
+									},
+									"response": []
+								},
+								{
+									"name": "DELETE Product http://localhost:8080/products/delete/1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ec6a7580-3794-4bef-b0e6-32135811e19a",
+												"exec": [
+													"tests[\"Status code is 403\"] = responseCode.code === 403;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {},
+										"url": {
+											"raw": "http://localhost:8080/products/delete/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"delete",
+												"1"
+											]
+										},
+										"description": "Delete an existing Profile - must have delete:profile scope"
+									},
+									"response": []
+								},
+								{
+									"name": "GET Products http://localhost:8080/atpos/products/allproducts",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "3772815b-d4c9-4207-88a0-81dbf5082188",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/allproducts",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"allproducts"
+											]
+										},
+										"description": "Get all Profiles - must have read:profiles scope"
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "1eae24f5-d088-4da9-be28-aee7deabc5bf",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "a3b30ece-2a6f-4657-8888-39ad663b77af",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "write:product, delete:product",
+							"item": [
+								{
+									"name": "resource server - PATCH API with Scopes",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "30b30133-6049-4760-9479-c6cd61a386f6",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"scopes\":[{\"value\": \"read:products\"}, {\"value\": \"read:product\"}, {\"value\": \"write:product\"}, {\"value\": \"delete:product\"}]}"
+										},
+										"url": {
+											"raw": "https://{{AUTH0_DOMAIN}}/api/v2/resource-servers/{{RESOURCE_SERVER_ID}}",
+											"protocol": "https",
+											"host": [
+												"{{AUTH0_DOMAIN}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"resource-servers",
+												"{{RESOURCE_SERVER_ID}}"
+											]
+										},
+										"description": "Update Auth0 Resource Server (identified with resource_server_id) with list of scopes you wish to associate with this API (resource server)"
+									},
+									"response": []
+								},
+								{
+									"name": "resource server - GET API scopes",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "00c197e0-2ada-4bfb-ae3d-96f711647b8e",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;",
+													"var data = JSON.parse(responseBody);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://{{AUTH0_DOMAIN}}/api/v2/resource-servers/{{RESOURCE_SERVER_ID}}",
+											"protocol": "https",
+											"host": [
+												"{{AUTH0_DOMAIN}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"resource-servers",
+												"{{RESOURCE_SERVER_ID}}"
+											]
+										},
+										"description": "Gets list of API scopes for this resource server (identified by resource_server_id)"
+									},
+									"response": []
+								},
+								{
+									"name": "resource server - GET Client Grants",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a78a1247-da9f-4022-98dd-7c1bf5aa6381",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;",
+													"",
+													"var data = JSON.parse(responseBody);",
+													"",
+													"tests[\"Body contains client_id: um8DwjZ4R9g62WQos6FQjVaRVQm8wRft\"] = responseBody.has(\"um8DwjZ4R9g62WQos6FQjVaRVQm8wRft\");",
+													"",
+													"var item = _.filter(data, function(o) {",
+													"    return o.client_id === 'um8DwjZ4R9g62WQos6FQjVaRVQm8wRft';",
+													"})[0];",
+													"",
+													"tests[\"expected id: cgr_JFFiSCXVRHEtQ7w4\"] = item.id === 'cgr_JFFiSCXVRHEtQ7w4'",
+													"",
+													"postman.setEnvironmentVariable(\"client_grant_id\", item.id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://{{AUTH0_DOMAIN}}/api/v2/client-grants",
+											"protocol": "https",
+											"host": [
+												"{{AUTH0_DOMAIN}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"client-grants"
+											]
+										},
+										"description": "Gets list of existing Client Grants. Represents the scope information associated with each Client across ALL resource servers defined for the given Auth0 Tenant"
+									},
+									"response": []
+								},
+								{
+									"name": "resource server - POST - obtain API Token",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ca789b9d-b7a6-47f4-a75d-d4cbce159e92",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;",
+													"var data = JSON.parse(responseBody);",
+													"postman.setEnvironmentVariable(\"access_token\", data.access_token);",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"client_id\":\"um8DwjZ4R9g62WQos6FQjVaRVQm8wRft\",\"client_secret\":\"sQrliPOMDpKIaZCh1OZoAlTE-QpuJzFxlbTKt06RhdxNsVfEL6qBD8kpsnkUNJYH\",\"audience\":\"https://atpos/api\",\"grant_type\":\"client_credentials\"}"
+										},
+										"url": {
+											"raw": "https://dfriveros11.auth0.com/oauth/token",
+											"protocol": "https",
+											"host": [
+												"dfriveros11",
+												"auth0",
+												"com"
+											],
+											"path": [
+												"oauth",
+												"token"
+											]
+										},
+										"description": "Get a token for the resource server (identified by audience in POST body request)"
+									},
+									"response": []
+								},
+								{
+									"name": "resource server - PATCH Client Grants",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "89656503-6c5d-4727-a35a-dea6cb3eb271",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"scope\": [\"write:product\", \"delete:product\"]}\n\n"
+										},
+										"url": {
+											"raw": "https://{{AUTH0_DOMAIN}}/api/v2/client-grants/{{client_grant_id}}",
+											"protocol": "https",
+											"host": [
+												"{{AUTH0_DOMAIN}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"client-grants",
+												"{{client_grant_id}}"
+											]
+										},
+										"description": "Update particular Client (associated with given resource server) with specific set of Client Grants - some subset of the scope information defined for the given resource server"
+									},
+									"response": []
+								},
+								{
+									"name": "GET HOME http://localhost:8080/",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "96797a66-c4c5-401e-9838-8aef2947a396",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/home",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"home"
+											]
+										},
+										"description": "Simple ping to check Resource Server is responding - no authorization credentials (JWT access token) required."
+									},
+									"response": []
+								},
+								{
+									"name": "POST Product http://localhost:8080/atpos/products/create",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "80bb6963-1f99-474a-8b33-a7d5fef896a0",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"productId\":\"3\",\n  \"price\": \"9\"\n}"
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/create",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"create"
+											]
+										},
+										"description": "Create a new Profile - must have write:profile scope"
+									},
+									"response": []
+								},
+								{
+									"name": "GET Products http://localhost:8080/atpos/products/allproducts",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "3772815b-d4c9-4207-88a0-81dbf5082188",
+												"exec": [
+													"tests[\"Status code is 403\"] = responseCode.code === 403;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/allproducts",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"allproducts"
+											]
+										},
+										"description": "Get all Profiles - must have read:profiles scope"
+									},
+									"response": []
+								},
+								{
+									"name": "PUT Product http://localhost:8080/atpos/products/update",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "531ee5d2-6e71-4db4-aaa5-f962c422fa77",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"productId\":\"3\",\n  \"price\": \"9.99\"\n}"
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/update",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"update"
+											]
+										},
+										"description": "Update existing Profile - must have write:profile scope"
+									},
+									"response": []
+								},
+								{
+									"name": "GET Product http://localhost:8080/atpos/products/getbyid/1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a43d20da-7e7d-4a6f-9126-4f235274bba8",
+												"exec": [
+													"tests[\"Status code is 403\"] = responseCode.code === 403;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/getbyid/3",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"getbyid",
+												"3"
+											]
+										},
+										"description": "Get specific profile by id - must have read:profile or read:profiles scope info"
+									},
+									"response": []
+								},
+								{
+									"name": "DELETE Product http://localhost:8080/products/delete/1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "434ce62b-bf70-4218-9166-547da1d35c33",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {},
+										"url": {
+											"raw": "http://localhost:8080/products/delete/3",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"delete",
+												"3"
+											]
+										},
+										"description": "Delete an existing Profile - must have delete:profile scope"
+									},
+									"response": []
+								},
+								{
+									"name": "GET Products http://localhost:8080/atpos/products/allproducts",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "3772815b-d4c9-4207-88a0-81dbf5082188",
+												"exec": [
+													"tests[\"Status code is 403\"] = responseCode.code === 403;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/allproducts",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"allproducts"
+											]
+										},
+										"description": "Get all Profiles - must have read:profiles scope"
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3cff5be8-f73f-476a-b691-ebc52a823071",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "6076996b-1c3c-40e6-ae04-0e15ba244711",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "read:product",
+							"item": [
+								{
+									"name": "resource server - PATCH API with Scopes",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "30b30133-6049-4760-9479-c6cd61a386f6",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"scopes\":[{\"value\": \"read:products\"}, {\"value\": \"read:product\"}, {\"value\": \"write:product\"}, {\"value\": \"delete:product\"}]}"
+										},
+										"url": {
+											"raw": "https://{{AUTH0_DOMAIN}}/api/v2/resource-servers/{{RESOURCE_SERVER_ID}}",
+											"protocol": "https",
+											"host": [
+												"{{AUTH0_DOMAIN}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"resource-servers",
+												"{{RESOURCE_SERVER_ID}}"
+											]
+										},
+										"description": "Update Auth0 Resource Server (identified with resource_server_id) with list of scopes you wish to associate with this API (resource server)"
+									},
+									"response": []
+								},
+								{
+									"name": "resource server - GET API scopes",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "00c197e0-2ada-4bfb-ae3d-96f711647b8e",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;",
+													"var data = JSON.parse(responseBody);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://{{AUTH0_DOMAIN}}/api/v2/resource-servers/{{RESOURCE_SERVER_ID}}",
+											"protocol": "https",
+											"host": [
+												"{{AUTH0_DOMAIN}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"resource-servers",
+												"{{RESOURCE_SERVER_ID}}"
+											]
+										},
+										"description": "Gets list of API scopes for this resource server (identified by resource_server_id)"
+									},
+									"response": []
+								},
+								{
+									"name": "resource server - GET Client Grants",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a78a1247-da9f-4022-98dd-7c1bf5aa6381",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;",
+													"",
+													"var data = JSON.parse(responseBody);",
+													"",
+													"tests[\"Body contains client_id: 13O7RK9qZZWm27MjXZqetNyII5cRK4yH\"] = responseBody.has(\"13O7RK9qZZWm27MjXZqetNyII5cRK4yH\");",
+													"",
+													"var item = _.filter(data, function(o) {",
+													"    return o.client_id === '13O7RK9qZZWm27MjXZqetNyII5cRK4yH';",
+													"})[0];",
+													"",
+													"tests[\"expected id: cgr_MOg3hipM4xhrXjTA\"] = item.id === 'cgr_MOg3hipM4xhrXjTA'",
+													"",
+													"postman.setEnvironmentVariable(\"client_grant_id\", item.id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://{{AUTH0_DOMAIN}}/api/v2/client-grants",
+											"protocol": "https",
+											"host": [
+												"{{AUTH0_DOMAIN}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"client-grants"
+											]
+										},
+										"description": "Gets list of existing Client Grants. Represents the scope information associated with each Client across ALL resource servers defined for the given Auth0 Tenant"
+									},
+									"response": []
+								},
+								{
+									"name": "resource server - POST - obtain API Token",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ca789b9d-b7a6-47f4-a75d-d4cbce159e92",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;",
+													"var data = JSON.parse(responseBody);",
+													"postman.setEnvironmentVariable(\"access_token\", data.access_token);",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"client_id\":\"13O7RK9qZZWm27MjXZqetNyII5cRK4yH\",\"client_secret\":\"Q7Q20ZVw4_dDSNuYMYZlLcFs9-4GAG4Nj36AbpGFEe5HCnMcpxqfzR7MMExZvcLC\",\"audience\":\"https://atpos/api\",\"grant_type\":\"client_credentials\"}"
+										},
+										"url": {
+											"raw": "https://dfriveros11.auth0.com/oauth/token",
+											"protocol": "https",
+											"host": [
+												"dfriveros11",
+												"auth0",
+												"com"
+											],
+											"path": [
+												"oauth",
+												"token"
+											]
+										},
+										"description": "Get a token for the resource server (identified by audience in POST body request)"
+									},
+									"response": []
+								},
+								{
+									"name": "resource server - PATCH Client Grants",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "89656503-6c5d-4727-a35a-dea6cb3eb271",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{RESOURCE_SERVER_TOKEN}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"scope\": [\"read:product\"]}\n"
+										},
+										"url": {
+											"raw": "https://{{AUTH0_DOMAIN}}/api/v2/client-grants/{{client_grant_id}}",
+											"protocol": "https",
+											"host": [
+												"{{AUTH0_DOMAIN}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"client-grants",
+												"{{client_grant_id}}"
+											]
+										},
+										"description": "Update particular Client (associated with given resource server) with specific set of Client Grants - some subset of the scope information defined for the given resource server"
+									},
+									"response": []
+								},
+								{
+									"name": "GET HOME http://localhost:8080/",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "96797a66-c4c5-401e-9838-8aef2947a396",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/home",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"home"
+											]
+										},
+										"description": "Simple ping to check Resource Server is responding - no authorization credentials (JWT access token) required."
+									},
+									"response": []
+								},
+								{
+									"name": "POST Product http://localhost:8080/atpos/products/create",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "80bb6963-1f99-474a-8b33-a7d5fef896a0",
+												"exec": [
+													"tests[\"Status code is 403\"] = responseCode.code === 403;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"productId\":\"3\",\n  \"price\": \"9\"\n}"
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/create",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"create"
+											]
+										},
+										"description": "Create a new Profile - must have write:profile scope"
+									},
+									"response": []
+								},
+								{
+									"name": "GET Products http://localhost:8080/atpos/products/allproducts",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "3772815b-d4c9-4207-88a0-81dbf5082188",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/allproducts",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"allproducts"
+											]
+										},
+										"description": "Get all Profiles - must have read:profiles scope"
+									},
+									"response": []
+								},
+								{
+									"name": "PUT Product http://localhost:8080/atpos/products/update",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "da544309-675f-4cb5-abf6-7583188befc5",
+												"exec": [
+													"tests[\"Status code is 403\"] = responseCode.code === 403;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"productId\":\"3\",\n  \"price\": \"9.99\"\n}"
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/update",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"update"
+											]
+										},
+										"description": "Update existing Profile - must have write:profile scope"
+									},
+									"response": []
+								},
+								{
+									"name": "GET Product http://localhost:8080/atpos/products/getbyid/1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a43d20da-7e7d-4a6f-9126-4f235274bba8",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/getbyid/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"getbyid",
+												"1"
+											]
+										},
+										"description": "Get specific profile by id - must have read:profile or read:profiles scope info"
+									},
+									"response": []
+								},
+								{
+									"name": "DELETE Product http://localhost:8080/products/delete/1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ec6a7580-3794-4bef-b0e6-32135811e19a",
+												"exec": [
+													"tests[\"Status code is 403\"] = responseCode.code === 403;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {},
+										"url": {
+											"raw": "http://localhost:8080/products/delete/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"delete",
+												"1"
+											]
+										},
+										"description": "Delete an existing Profile - must have delete:profile scope"
+									},
+									"response": []
+								},
+								{
+									"name": "GET Products http://localhost:8080/atpos/products/allproducts",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "3772815b-d4c9-4207-88a0-81dbf5082188",
+												"exec": [
+													"tests[\"Status code is 200\"] = responseCode.code === 200;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8080/products/allproducts",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"products",
+												"allproducts"
+											]
+										},
+										"description": "Get all Profiles - must have read:profiles scope"
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "1eae24f5-d088-4da9-be28-aee7deabc5bf",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "a3b30ece-2a6f-4657-8888-39ad663b77af",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"_postman_isSubFolder": true
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	]
+}

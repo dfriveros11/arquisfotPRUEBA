@@ -1,0 +1,231 @@
+{
+	"id": "6d17a4d8-5c96-c3e1-2058-da524511e1f6",
+	"name": "ATPOSBuyer",
+	"description": "",
+	"order": [
+		"d206b0c8-69cc-45fa-e7bd-cd0414548393",
+		"0df3f228-047e-9ca8-cef6-c53e6a3f97f3",
+		"d3401488-b6ee-217a-3148-c6247ebbe734",
+		"173506c9-a0ea-b7ce-a931-2ddc3409afed",
+		"5f319fc2-e346-b972-132f-32ef15a80abb",
+		"cc370bf0-547e-7783-f6e5-12ba067e174c",
+		"11be2f71-1b46-fdd7-4684-dee226448e34"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1553219586277,
+	"owner": "6907056",
+	"public": false,
+	"requests": [
+		{
+			"id": "0df3f228-047e-9ca8-cef6-c53e6a3f97f3",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/buyers/getbyid/1",
+			"folder": "c0b73ce6-2bfe-469e-48dc-7341ce17e9a2",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "let jsonData = pm.response.json();\n\nconsole.log(jsonData);\n\npm.test(\"Get Product\", function(){\n    pm.expect(jsonData.productId).to.eql(1);\n    pm.expect(jsonData.price).to.eql(9.00);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553220570756,
+			"name": "GetBuyer id=1",
+			"description": "",
+			"collectionId": "6d17a4d8-5c96-c3e1-2058-da524511e1f6",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "11be2f71-1b46-fdd7-4684-dee226448e34",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/buyers/allbuyers",
+			"folder": "c0b73ce6-2bfe-469e-48dc-7341ce17e9a2",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553225563419,
+			"name": "GetBuyer id=1 Delete",
+			"description": "",
+			"collectionId": "6d17a4d8-5c96-c3e1-2058-da524511e1f6",
+			"responses": [],
+			"rawModeData": "{\n  \"productId\":\"1\",\n  \"price\": \"9.50\"\n}"
+		},
+		{
+			"id": "173506c9-a0ea-b7ce-a931-2ddc3409afed",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/buyers/getbyid/1",
+			"folder": "c0b73ce6-2bfe-469e-48dc-7341ce17e9a2",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "let jsonData = pm.response.json();\n\nconsole.log(jsonData);\n\npm.test(\"Get Product\", function(){\n    pm.expect(jsonData.productId).to.eql(1);\n    pm.expect(jsonData.price).to.eql(9.50);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553220577509,
+			"name": "GetBuyer id=1 Change",
+			"description": "",
+			"collectionId": "6d17a4d8-5c96-c3e1-2058-da524511e1f6",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "5f319fc2-e346-b972-132f-32ef15a80abb",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/buyers/create",
+			"folder": "c0b73ce6-2bfe-469e-48dc-7341ce17e9a2",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553220581619,
+			"name": "CreateBuyer id=1 Duplicate",
+			"description": "",
+			"collectionId": "6d17a4d8-5c96-c3e1-2058-da524511e1f6",
+			"responses": [],
+			"rawModeData": "{\n  \"buyerId\":1,\n  \"name\": \"Ivanete\",\n  \"points\": 10,\n  \"address\": \"carrera 250 numero 250 250\",\n  \"email\": \"hola@hola.com\",\n  \"phoneNumber\": \"4344344\"\n}"
+		},
+		{
+			"id": "cc370bf0-547e-7783-f6e5-12ba067e174c",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/buyers/delete/1",
+			"folder": "c0b73ce6-2bfe-469e-48dc-7341ce17e9a2",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553220585794,
+			"name": "DeleteBuyer id=1",
+			"description": "",
+			"collectionId": "6d17a4d8-5c96-c3e1-2058-da524511e1f6",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "d206b0c8-69cc-45fa-e7bd-cd0414548393",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/buyers/create",
+			"folder": "c0b73ce6-2bfe-469e-48dc-7341ce17e9a2",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553220564988,
+			"name": "CreateBuyer id=1",
+			"description": "",
+			"collectionId": "6d17a4d8-5c96-c3e1-2058-da524511e1f6",
+			"responses": [],
+			"rawModeData": "{\n  \"buyerId\":1,\n  \"name\": \"Ivanete\",\n  \"points\": 10,\n  \"address\": \"carrera 250 numero 250 250\",\n  \"email\": \"hola@hola.com\",\n  \"phoneNumber\": \"4344344\"\n}"
+		},
+		{
+			"id": "d3401488-b6ee-217a-3148-c6247ebbe734",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/buyers/update",
+			"folder": "c0b73ce6-2bfe-469e-48dc-7341ce17e9a2",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"tests": "pm.test(\"Status code is 200\", function(){\n    pm.response.to.have.status(200);\n});\n\nlet jsonData = pm.response.json();\n\nconsole.log(jsonData);\n\npm.test(\"Get Product\", function(){\n    pm.expect(jsonData.productId).to.eql(1);\n    pm.expect(jsonData.price).to.eql(9.50);\n});",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553220574367,
+			"name": "UpdateBuyer id=1",
+			"description": "",
+			"collectionId": "6d17a4d8-5c96-c3e1-2058-da524511e1f6",
+			"responses": [],
+			"rawModeData": "{\n  \"buyerId\":1,\n  \"name\": \"Ivancho Dios\",\n  \"points\": 10,\n  \"address\": \"carrera 250 numero 250 250\",\n  \"email\": \"hola@hola.com\",\n  \"phoneNumber\": \"4344344\"\n}"
+		}
+	]
+}
