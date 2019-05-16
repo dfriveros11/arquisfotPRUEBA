@@ -101,7 +101,7 @@ public class ProductController {
 	}
 
 	/**
-	 * /products/allproducts -> return all the products..
+	 * /product/allproducts -> return all the products..
 	 * 
 	 * @return a empty list.
 	 */

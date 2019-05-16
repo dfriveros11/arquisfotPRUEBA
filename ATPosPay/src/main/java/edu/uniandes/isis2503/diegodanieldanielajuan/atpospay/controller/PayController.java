@@ -1,6 +1,5 @@
 package edu.uniandes.isis2503.diegodanieldanielajuan.atpospay.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -109,7 +108,7 @@ public class PayController {
 	 * @return a empty list.
 	 */
 	@ResponseBody
-	@GetMapping("/allPays")
+	@GetMapping("/allpays")
 	public List<Pay> getPays() {
 		try {
 			List<Pay> Pays = payRepository.getAllPays();
