@@ -1,0 +1,3397 @@
+{
+	"info": {
+		"_postman_id": "04e20436-d93f-4346-bf5c-df209739aadc",
+		"name": "ATposMicroservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ATposGateway",
+			"item": [
+				{
+					"name": "EurekaisUP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "54fc9820-2d04-4752-aad5-268faf76134c",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8761/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8761",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ATposBill",
+			"item": [
+				{
+					"name": "Bill",
+					"item": [
+						{
+							"name": "CreateBill id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": 42\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetBill id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ba3b8354-eb7a-41e9-8e7b-a2d6ae2d66e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/getbyid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"getbyid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateBill id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6814a5e7-2e03-49ff-81a9-77bec7ccc30a",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": 500\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/update/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"update",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetBill id=1 Change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "29e6ba39-93cd-4aa1-a2c9-e0a71c5b6b0d",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/getbyid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"getbyid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteBill id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "456aea4c-da7b-4261-845e-620a745b3d40",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/delete/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllBills",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/allbills",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"allbills"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Refund",
+					"item": [
+						{
+							"name": "CreateRefund id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"description\": \"The itmes where not available\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/refunds/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"refunds",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetRefund id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ba3b8354-eb7a-41e9-8e7b-a2d6ae2d66e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/refunds/getbyid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"refunds",
+										"getbyid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateRefund id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6814a5e7-2e03-49ff-81a9-77bec7ccc30a",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"description\": \"BAD REQUEST\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/refunds/update/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"refunds",
+										"update",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetRefund id=1 Change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "29e6ba39-93cd-4aa1-a2c9-e0a71c5b6b0d",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/refunds/getbyid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"refunds",
+										"getbyid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteRefund id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "456aea4c-da7b-4261-845e-620a745b3d40",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/refunds/delete/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"refunds",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllRefund",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/refunds/allrefunds",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"refunds",
+										"allrefunds"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "CreateProduct id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Leche Alpina\",\n  \"price\": 42\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/products/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"products",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetProduct id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ba3b8354-eb7a-41e9-8e7b-a2d6ae2d66e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/products/getbyid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"products",
+										"getbyid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateProduct id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6814a5e7-2e03-49ff-81a9-77bec7ccc30a",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Yogurt\",\n  \"price\": 10\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/products/update/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"products",
+										"update",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetProduct id=1 Change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "29e6ba39-93cd-4aa1-a2c9-e0a71c5b6b0d",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/products/getbyid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"products",
+										"getbyid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteProduct id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "456aea4c-da7b-4261-845e-620a745b3d40",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/products/delete/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"products",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllPoducts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/products/allproducts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"products",
+										"allproducts"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Promotion",
+					"item": [
+						{
+							"name": "CreatePromotion id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": 0.10\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/promotions/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"promotions",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetPromotion id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ba3b8354-eb7a-41e9-8e7b-a2d6ae2d66e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/promotions/getbyid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"promotions",
+										"getbyid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "ProductPromotion",
+					"item": [
+						{
+							"name": "CreateProduct id=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Leche Alpina\",\n  \"price\": 42\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/products/create/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"products",
+										"create",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateProduct id=1 Promotion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": 0.10\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/products/create/2/promotions",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"products",
+										"create",
+										"2",
+										"promotions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetProduct id=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ba3b8354-eb7a-41e9-8e7b-a2d6ae2d66e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/products/getbyid/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"products",
+										"getbyid",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdatePromotion id=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6814a5e7-2e03-49ff-81a9-77bec7ccc30a",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": 0.25\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/promotions/update/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"promotions",
+										"update",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetPromotion id=2 Change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "29e6ba39-93cd-4aa1-a2c9-e0a71c5b6b0d",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/promotions/getbyid/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"promotions",
+										"getbyid",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeletePromotion id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "456aea4c-da7b-4261-845e-620a745b3d40",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/promotions/delete/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"promotions",
+										"delete",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllPromotions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/promotions/allpromotions",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"promotions",
+										"allpromotions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteProduct id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "456aea4c-da7b-4261-845e-620a745b3d40",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/products/delete/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"products",
+										"delete",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d6bb68f0-7fc2-4907-87ad-3a01160de8f7",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe29c475-e7e0-4e3f-8440-b2b71008d13a",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "BillRefund",
+					"item": [
+						{
+							"name": "CreateBill id=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": 42\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/create/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"create",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateBill id=2 Refund",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"description\": \"The itmes where not available\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/create/2/refunds",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"create",
+										"2",
+										"refunds"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetBill id=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ba3b8354-eb7a-41e9-8e7b-a2d6ae2d66e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/getbyid/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"getbyid",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteBill id=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "456aea4c-da7b-4261-845e-620a745b3d40",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/delete/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"delete",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d6bb68f0-7fc2-4907-87ad-3a01160de8f7",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe29c475-e7e0-4e3f-8440-b2b71008d13a",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "BillProduct",
+					"item": [
+						{
+							"name": "CreateBill id=3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": 42\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/create/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"create",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateProduct id=3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Leche Alpina\",\n  \"price\": 42\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/products/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"products",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateBill id=3 Product id=3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"description\": \"The itmes where not available\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/create/3/products/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"create",
+										"3",
+										"products",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetBill id=3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ba3b8354-eb7a-41e9-8e7b-a2d6ae2d66e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/getbyid/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"getbyid",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateProduct id=4",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Arequipe\",\n  \"price\": 55\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/products/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"products",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateBill id=3 Product id=4",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"description\": \"The itmes where not available\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/create/3/products/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"create",
+										"3",
+										"products",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetBill id=3 allproducts",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ba3b8354-eb7a-41e9-8e7b-a2d6ae2d66e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/getbyid/3/products/allproducts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"getbyid",
+										"3",
+										"products",
+										"allproducts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteBill id=3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "456aea4c-da7b-4261-845e-620a745b3d40",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8083/bills/delete/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"bills",
+										"delete",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d6bb68f0-7fc2-4907-87ad-3a01160de8f7",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe29c475-e7e0-4e3f-8440-b2b71008d13a",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "ATposTransaction",
+			"item": [
+				{
+					"name": "Transaction",
+					"item": [
+						{
+							"name": "CreateTransaction id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": 42\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetTransaction id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ba3b8354-eb7a-41e9-8e7b-a2d6ae2d66e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/getbyid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"getbyid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateTransaction id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6814a5e7-2e03-49ff-81a9-77bec7ccc30a",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": 500\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/update/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"update",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetTransaction id=1 Change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "29e6ba39-93cd-4aa1-a2c9-e0a71c5b6b0d",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/getbyid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"getbyid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteTransactiond=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "456aea4c-da7b-4261-845e-620a745b3d40",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/delete/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllTransactions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/alltransactions",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"alltransactions"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "TransactionBillPay",
+					"item": [
+						{
+							"name": "CreateTransaction id=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": 42\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/create/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"create",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateTransaction id=2 Bil id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": 42\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/create/2/bills",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"create",
+										"2",
+										"bills"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetTransaction id=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ba3b8354-eb7a-41e9-8e7b-a2d6ae2d66e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/getbyid/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"getbyid",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateTransaction id=2 Pay id=1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Credit Card\",\n  \"description\": \"Done it\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/create/2/pays",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"create",
+										"2",
+										"pays"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetTransaction id=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ba3b8354-eb7a-41e9-8e7b-a2d6ae2d66e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/getbyid/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"getbyid",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateBill id=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6814a5e7-2e03-49ff-81a9-77bec7ccc30a",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": 500\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8084/bills/update/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"bills",
+										"update",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetBill id=2 Change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "29e6ba39-93cd-4aa1-a2c9-e0a71c5b6b0d",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/bills/getbyid/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"bills",
+										"getbyid",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteBill id=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "456aea4c-da7b-4261-845e-620a745b3d40",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/bills/delete/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"bills",
+										"delete",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllBills",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/bills/allbills",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"bills",
+										"allbills"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetTransaction id=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ba3b8354-eb7a-41e9-8e7b-a2d6ae2d66e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/getbyid/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"getbyid",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdatePayid=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6814a5e7-2e03-49ff-81a9-77bec7ccc30a",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Cash\",\n  \"description\": \"YOU CAN DO IT\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8084/pays/update/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"pays",
+										"update",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetPay id=2 Change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "29e6ba39-93cd-4aa1-a2c9-e0a71c5b6b0d",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/pays/getbyid/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"pays",
+										"getbyid",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteTransactiond=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "456aea4c-da7b-4261-845e-620a745b3d40",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/delete/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"delete",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllTransactions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/transactions/alltransactions",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"transactions",
+										"alltransactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetPay id=2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ba3b8354-eb7a-41e9-8e7b-a2d6ae2d66e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function(){",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8084/pays/getbyid/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"pays",
+										"getbyid",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d6bb68f0-7fc2-4907-87ad-3a01160de8f7",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe29c475-e7e0-4e3f-8440-b2b71008d13a",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "ATposPromotion",
+			"item": [
+				{
+					"name": "CreatetPromotion id=1 Duplicate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+								"exec": [
+									"pm.test(\"Status code is 200\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\":\"1\",\n  \"promotionId\": \"1\",\n  \"value\": \"3.00\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/promotions/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"promotions",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPromotion id=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a1f66aa-8d36-443f-bbf4-c25e4f355d0f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8081/promotions/getbyid/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"promotions",
+								"getbyid",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePromotion id=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6814a5e7-2e03-49ff-81a9-77bec7ccc30a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"let jsonData = pm.response.json();",
+									"",
+									"console.log(jsonData);",
+									"",
+									"pm.test(\"Get Product\", function(){",
+									"    pm.expect(jsonData.productPromotionId).to.eql(1);",
+									"    pm.expect(jsonData.promotion).to.eql(50.00);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\":\"0.50\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/promotions/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"promotions",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPromotion id=1 Change",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29e6ba39-93cd-4aa1-a2c9-e0a71c5b6b0d",
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"",
+									"console.log(jsonData);",
+									"",
+									"pm.test(\"Get Product\", function(){",
+									"    pm.expect(jsonData.productId).to.eql(1);",
+									"    pm.expect(jsonData.price).to.eql(9.50);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8081/promotions/getbyid/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"promotions",
+								"getbyid",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePromotion id=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "456aea4c-da7b-4261-845e-620a745b3d40",
+								"exec": [
+									"pm.test(\"Status code is 200\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8081/promotions/delete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"promotions",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPromotiont id=1 Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3ea84700-d1dd-4498-a4e4-a554e749e307",
+								"exec": [
+									"pm.test(\"Status code is 200\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\":\"1\",\n  \"price\": \"9.50\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/promotions/getbyid/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"promotions",
+								"getbyid",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ATposOrchestator",
+			"item": [
+				{
+					"name": "CreatetPromotion id=1 Duplicate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f8ba78aa-aad2-4d3a-b943-b09594c5d104",
+								"exec": [
+									"pm.test(\"Status code is 200\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": 42\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8085/orchestators/transactions/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"orchestators",
+								"transactions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
