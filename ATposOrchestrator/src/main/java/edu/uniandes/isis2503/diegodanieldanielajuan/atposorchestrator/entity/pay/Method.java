@@ -1,28 +1,12 @@
-package edu.uniandes.isis2503.diegodanieldanielajuan.atpospay.entity;
+package edu.uniandes.isis2503.diegodanieldanielajuan.atposorchestrator.entity.pay;
 
-import java.io.Serializable;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity
-public class Method implements Serializable {
+public class Method  {
 	
-	/**
-	 * Serializable
-	 */
-	private static final long serialVersionUID = 6287805956991986743L;
-
 	/**
 	 * Id of the Product
 	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	private String name;
@@ -31,7 +15,6 @@ public class Method implements Serializable {
 
 	
 	@JsonBackReference(value="PayMethod")
-	@ManyToOne(fetch=FetchType.EAGER)
 	private Pay pay;
 	
 	

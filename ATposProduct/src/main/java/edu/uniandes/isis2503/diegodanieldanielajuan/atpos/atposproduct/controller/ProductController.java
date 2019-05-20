@@ -1,4 +1,4 @@
-package edu.uniandes.isis2503.diegodanieldanielajuan.atpos.controller;
+package edu.uniandes.isis2503.diegodanieldanielajuan.atpos.atposproduct.controller;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import edu.uniandes.isis2503.diegodanieldanielajuan.atpos.document.Product;
-import edu.uniandes.isis2503.diegodanieldanielajuan.atpos.repository.ProductRepository;
+import edu.uniandes.isis2503.diegodanieldanielajuan.atpos.atposproduct.document.Product;
+import edu.uniandes.isis2503.diegodanieldanielajuan.atpos.atposproduct.repository.ProductRepository;
 
 @Controller
 @RequestMapping("/products")

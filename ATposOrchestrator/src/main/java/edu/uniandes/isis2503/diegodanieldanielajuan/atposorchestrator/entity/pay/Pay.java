@@ -1,33 +1,13 @@
-package edu.uniandes.isis2503.diegodanieldanielajuan.atpospay.entity;
-
-import java.io.Serializable;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+package edu.uniandes.isis2503.diegodanieldanielajuan.atposorchestrator.entity.pay;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Entity
-@EntityListeners(AuditingEntityListener.class)
-public class Pay implements Serializable {
+public class Pay {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -476497477076371992L;
 
 	/**
 	 * Id of the Entity
 	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	/**
@@ -43,21 +23,19 @@ public class Pay implements Serializable {
 	/**
 	 * Total price of the Pay
 	 */
-	@NotNull
 	private double value;
 	
 	@JsonManagedReference(value="PayBuyer")  
-	@OneToOne(mappedBy = "pay", cascade = CascadeType.ALL)
 	private Buyer buyer;
 	
 	@JsonManagedReference(value="PayMethod")
-	@OneToOne(mappedBy = "pay", cascade = CascadeType.ALL)
 	private Method method;
 	
 	public Pay() {}
 
-	public Pay(String name, String description, @NotNull double value, Buyer buyer, Method method) {
+	public Pay(long id,String name, String description, double value, Buyer buyer, Method method) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.value = value;

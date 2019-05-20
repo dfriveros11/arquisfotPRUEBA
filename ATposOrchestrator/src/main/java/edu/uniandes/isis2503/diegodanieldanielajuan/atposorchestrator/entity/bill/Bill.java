@@ -1,11 +1,10 @@
-package edu.uniandes.isis2503.diegodanieldanielajuan.atposorchestrator.entity;
+package edu.uniandes.isis2503.diegodanieldanielajuan.atposorchestrator.entity.bill;
 
 import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 public class Bill {
 
@@ -18,29 +17,31 @@ public class Bill {
 	/**
 	 * Creation Date
 	 */
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
 
     
     /**
 	 * Last modified Date
 	 */
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastModifiedDate;
 	
 	/**
 	 * Total price of the Bill
 	 */
-	private Double value;
+	private double value;
 	
+	@JsonManagedReference(value="BillRefund")  
 	private Refund refund;
 	
-	private List<Product> products;
+	@JsonManagedReference(value="BillProduct")
+	private List<ProductForBill> products;
 	
 	public Bill() {}
 
 	
-	public Bill(Double value, Refund refund, List<Product> products) {
+	public Bill(double value, Refund refund, List<ProductForBill> products) {
 		super();
 		this.value = value;
 		this.refund = refund;
@@ -71,7 +72,7 @@ public class Bill {
 	 * 
 	 * @return the value
 	 */
-	public Double getValue() {
+	public double getValue() {
 		return value;
 	}
 
@@ -79,7 +80,7 @@ public class Bill {
 	 * 
 	 * @param value set value
 	 */
-	public void setValue(Double value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 
@@ -94,12 +95,12 @@ public class Bill {
 	}
 
 
-	public List<Product> getProducts() {
+	public List<ProductForBill> getProducts() {
 		return products;
 	}
 
 
-	public void setProducts(List<Product> products) {
+	public void setProducts(List<ProductForBill> products) {
 		this.products = products;
 	}
 

@@ -1,6 +1,10 @@
-package edu.uniandes.isis2503.diegodanieldanielajuan.atposorchestrator.entity;
+package edu.uniandes.isis2503.diegodanieldanielajuan.atposorchestrator.entity.transaction;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 public class Transaction{
 
@@ -12,6 +16,7 @@ public class Transaction{
 	/**
 	 * Creation Date
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createdDate;
 	
     
@@ -20,9 +25,11 @@ public class Transaction{
 	 */
 	private Double value;
 	
-	private Bill bill;
+	@JsonManagedReference(value="TransactionBill")  
+	private BillForTransaction bill;
 	
-	private Pay pay;
+	@JsonManagedReference(value="TransactionPay")  
+	private PayForTransaction pay;
 	
 	
 	public Transaction() {}
@@ -32,7 +39,7 @@ public class Transaction{
 	}
 
 	
-	public Transaction(Double value, Bill bill, Pay pay) {
+	public Transaction(Double value, BillForTransaction bill, PayForTransaction pay) {
 		super();
 		this.value = value;
 		this.bill = bill;
@@ -67,19 +74,19 @@ public class Transaction{
 		this.createdDate = createdDate;
 	}
 
-	public Bill getBill() {
+	public BillForTransaction getBill() {
 		return bill;
 	}
 
-	public void setBill(Bill bill) {
+	public void setBill(BillForTransaction bill) {
 		this.bill = bill;
 	}
 
-	public Pay getPay() {
+	public PayForTransaction getPay() {
 		return pay;
 	}
 
-	public void setPay(Pay pay) {
+	public void setPay(PayForTransaction pay) {
 		this.pay = pay;
 	}
 

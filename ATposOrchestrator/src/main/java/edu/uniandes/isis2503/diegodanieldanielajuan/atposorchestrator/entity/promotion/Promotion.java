@@ -1,4 +1,4 @@
-package edu.uniandes.isis2503.diegodanieldanielajuan.atposorchestrator.entity;
+package edu.uniandes.isis2503.diegodanieldanielajuan.atposorchestrator.entity.promotion;
 
 
 public class Promotion {

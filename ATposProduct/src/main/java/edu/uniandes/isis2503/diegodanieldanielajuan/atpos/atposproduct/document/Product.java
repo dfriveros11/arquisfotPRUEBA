@@ -1,4 +1,4 @@
-package edu.uniandes.isis2503.diegodanieldanielajuan.atpos.document;
+package edu.uniandes.isis2503.diegodanieldanielajuan.atpos.atposproduct.document;
 
 import java.io.Serializable;
 

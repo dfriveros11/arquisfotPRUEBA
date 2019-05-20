@@ -1,6 +1,10 @@
-package edu.uniandes.isis2503.diegodanieldanielajuan.atposorchestrator.entity;
+package edu.uniandes.isis2503.diegodanieldanielajuan.atposorchestrator.entity.transaction;
 
-public class Pay{
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+
+
+public class PayForTransaction {
 
 	/**
 	 * Id of the Entity
@@ -11,15 +15,16 @@ public class Pay{
 	
 	private String description;
 	
+	@JsonBackReference(value="TransactionPay")  
     private Transaction transaction;
 	
-	public Pay() {}
+	public PayForTransaction() {}
 
-	public Pay(long id) {
+	public PayForTransaction(long id) {
 		this.id = id;
 	}
 	
-	public Pay(String name, String description, Transaction transaction) {
+	public PayForTransaction(String name, String description, Transaction transaction) {
 		this.name = name;
 		this.description = description;
 		this.transaction = transaction;

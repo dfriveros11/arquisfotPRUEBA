@@ -25,10 +25,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://localhost:8761/",
 							"protocol": "http",
@@ -302,10 +298,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "http://localhost:8083/bills/allbills",
 									"protocol": "http",
@@ -578,10 +570,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "http://localhost:8083/refunds/allrefunds",
 									"protocol": "http",
@@ -854,10 +842,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "http://localhost:8083/products/allproducts",
 									"protocol": "http",
@@ -1284,10 +1268,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "http://localhost:8083/promotions/allpromotions",
 									"protocol": "http",
@@ -2281,10 +2261,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "http://localhost:8084/transactions/alltransactions",
 									"protocol": "http",
@@ -2707,10 +2683,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "http://localhost:8084/bills/allbills",
 									"protocol": "http",
@@ -2930,10 +2902,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "http://localhost:8084/transactions/alltransactions",
 									"protocol": "http",
@@ -3344,7 +3312,7 @@
 			"name": "ATposOrchestator",
 			"item": [
 				{
-					"name": "CreatetPromotion id=1 Duplicate",
+					"name": "CreatetPromotion id=1",
 					"event": [
 						{
 							"listen": "test",
@@ -3373,10 +3341,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"value\": 42\n}"
+							"raw": "{\n\t\"idProducts\":[\n\t\t{\"id\":1},{\"id\":1},{\"id\":1},{\"id\":2},{\"id\":1},{\"id\":1}\n\t],\n\t\"pay\":{\n\t    \"name\": \"prueba\",\n\t    \"description\": \"all good!\",\n\t    \"value\": 10.0,\n\t    \"buyer\": {\n\t    \t\"name\": \"Arcadia\",\n\t    \t\"email\": \"tuop@opashell.com\"\n\t    },\n\t    \"method\": {\n\t    \t\"name\":\"Credit Card\",\n\t    \t\"description\": \"Visa\"\n\t    }\n\t}\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8085/orchestators/transactions/1",
+							"raw": "http://localhost:8085/orchestators/transactions",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3384,8 +3352,7 @@
 							"port": "8085",
 							"path": [
 								"orchestators",
-								"transactions",
-								"1"
+								"transactions"
 							]
 						}
 					},

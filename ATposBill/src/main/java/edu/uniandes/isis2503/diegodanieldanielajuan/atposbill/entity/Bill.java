@@ -61,7 +61,7 @@ public class Bill implements Serializable {
 	 * Total price of the Bill
 	 */
 	@NotNull
-	private Double value;
+	private double value;
 	
 	@JsonManagedReference(value="BillRefund")  
 	@OneToOne(mappedBy = "bill", cascade = CascadeType.ALL)
@@ -74,7 +74,7 @@ public class Bill implements Serializable {
 	public Bill() {}
 
 	
-	public Bill(Double value, Refund refund, List<Product> products) {
+	public Bill(double value, Refund refund, List<Product> products) {
 		super();
 		this.value = value;
 		this.refund = refund;
@@ -105,7 +105,7 @@ public class Bill implements Serializable {
 	 * 
 	 * @return the value
 	 */
-	public Double getValue() {
+	public double getValue() {
 		return value;
 	}
 
@@ -113,7 +113,7 @@ public class Bill implements Serializable {
 	 * 
 	 * @param value set value
 	 */
-	public void setValue(Double value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 

@@ -1,7 +1,10 @@
-package edu.uniandes.isis2503.diegodanieldanielajuan.atposorchestrator.entity;
+package edu.uniandes.isis2503.diegodanieldanielajuan.atposorchestrator.entity.bill;
+
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Refund{
 
@@ -13,6 +16,7 @@ public class Refund{
 	/**
 	 * Creation Date
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
 
    
@@ -22,6 +26,7 @@ public class Refund{
 	private String description;
 	
 	
+	@JsonBackReference(value="BillRefund")  
     private Bill bill;
 	
 	
